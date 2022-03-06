@@ -53,7 +53,6 @@ func wholeStory(str string) string {
 	// REMOVE MULTIPLE SPACES, KEEP ONLY SINGLE SPACE BETWEEN TWO WORDS
 	m1 := regexp.MustCompile(" +")
 	res := m1.ReplaceAllString(temp, " ")
-	//fmt.Println(strings.TrimSpace(res))
 	return res
 }
 
@@ -64,6 +63,7 @@ func storyStat(str string) (shortest, longest, averagelength string, list []stri
 	// CONVERT STRING TO SENTENCE WITH SPACES
 	sentence := wholeStory(str)
 
+	// CONVERT SENTENCE TO STRING ARRAY
 	s := strings.Fields(sentence)
 	shortest = s[0]
 	longest = s[0]
@@ -73,6 +73,8 @@ func storyStat(str string) (shortest, longest, averagelength string, list []stri
 
 	average := length.Div(count)
 	var listtemp = make([]string, 0)
+
+	// LOOP THROUGH THE STRING TO GET THE SHORTEST AND LONGEST WORDS
 	for _, val := range s {
 		if len(val) > len(longest) {
 			longest = val
@@ -82,6 +84,7 @@ func storyStat(str string) (shortest, longest, averagelength string, list []stri
 			shortest = val
 		}
 
+		// USED THIRD PARTY PACKAGE TO HANDLE DECIMAL VALUES WHICH CAN BE USED TO ROUND UP AND ROUND DOWN FUNCTIONS
 		if decimal.NewFromInt(int64(len(val))).Equal(average.RoundUp(0)) || decimal.NewFromInt(int64(len(val))).Equal(average.RoundDown(0)) {
 			listtemp = append(listtemp, val)
 		}
