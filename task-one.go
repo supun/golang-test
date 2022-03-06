@@ -10,6 +10,19 @@ import (
 )
 
 func main() {
+	var param string
+
+	fmt.Print("Enter string: ")
+	fmt.Scanf("%s", &param)
+
+	if !testValidity(param) {
+		fmt.Println("The entered string is not in the correct format")
+		return
+	}
+
+	fmt.Println("Average number ", averageNumber(param))
+	fmt.Println("Whole sentence ", wholeStory(param))
+	fmt.Println(storyStat(param))
 
 }
 
@@ -17,8 +30,10 @@ func main() {
 // ESTIMATED 2 hr
 // COMPLETED 2.5 hr
 func testValidity(str string) bool {
+	if len(str) == 0 {
+		return false
+	}
 	match, _ := regexp.MatchString("^[0-9+]+-[a-zA-Z]+$", str)
-	fmt.Println(match)
 	return match
 }
 
