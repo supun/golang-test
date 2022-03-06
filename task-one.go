@@ -5,6 +5,8 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/shopspring/decimal"
 )
 
 func main() {
@@ -53,4 +55,37 @@ func wholeStory(str string) string {
 	res := m1.ReplaceAllString(temp, " ")
 	//fmt.Println(strings.TrimSpace(res))
 	return res
+}
+
+// DIFFICULTY EASY
+// ESTIMATED 1 hr
+// COMPLETED 0.5 hr
+func storyStat(str string) (shortest, longest, averagelength string, list []string) {
+	// CONVERT STRING TO SENTENCE WITH SPACES
+	sentence := wholeStory(str)
+
+	s := strings.Fields(sentence)
+	shortest = s[0]
+	longest = s[0]
+	count := decimal.NewFromInt(int64(len(s)))
+	tempstr := strings.ReplaceAll(sentence, " ", "")
+	length := decimal.NewFromInt(int64(len(tempstr)))
+
+	average := length.Div(count)
+	var listtemp = make([]string, 0)
+	for _, val := range s {
+		if len(val) > len(longest) {
+			longest = val
+		}
+
+		if len(val) < len(shortest) {
+			shortest = val
+		}
+
+		if decimal.NewFromInt(int64(len(val))).Equal(average.RoundUp(0)) || decimal.NewFromInt(int64(len(val))).Equal(average.RoundDown(0)) {
+			listtemp = append(listtemp, val)
+		}
+	}
+
+	return shortest, longest, average.String(), listtemp
 }
