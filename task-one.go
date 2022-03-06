@@ -39,3 +39,18 @@ func averageNumber(str string) float32 {
 	}
 	return float32(total / count)
 }
+
+// DIFFICULTY EASY
+// ESTIMATED 1 hr
+// COMPLETED 0.5 hr
+func wholeStory(str string) string {
+	// REPLACE NON ALPHABETICAL WITH SPACE
+	m := regexp.MustCompile("\\P{L}")
+	temp := m.ReplaceAllString(str, " ")
+
+	// REMOVE MULTIPLE SPACES, KEEP ONLY SINGLE SPACE BETWEEN TWO WORDS
+	m1 := regexp.MustCompile(" +")
+	res := m1.ReplaceAllString(temp, " ")
+	//fmt.Println(strings.TrimSpace(res))
+	return res
+}
