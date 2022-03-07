@@ -6,7 +6,7 @@ import (
 	"github.com/lucasjones/reggen"
 )
 
-func main() {
+func init() {
 	var param string
 
 	fmt.Print("Enter flag (true or false): ")
