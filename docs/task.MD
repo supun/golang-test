@@ -32,7 +32,7 @@ Before implementing the needed function, please estimate the difficulty of the f
 Write a generate function, that takes boolean flag and generates random correct strings if the parameter is true and random incorrect strings if the flag is false.
 Write unit tests for the functions:
 
--testValidity
--averageNumber
--wholeStory
--storyStats`
+ testValidity
+ averageNumber
+ wholeStory
+ storyStats`
