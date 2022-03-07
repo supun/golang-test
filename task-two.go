@@ -19,7 +19,9 @@ func main() {
 
 func generateRandomString(param bool) string {
 	if !param {
-		return "abc"
+		pattern := "^[0-9+][a-zA-Z]+(?:-[0-9]+-[a-zA-Z]+)*$"
+		str, _ := reggen.Generate(pattern, 10)
+		return str
 	}
 
 	pattern := "^[0-9+]-[a-zA-Z]+(?:-[0-9]+-[a-zA-Z]+)*$"
