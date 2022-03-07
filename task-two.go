@@ -17,6 +17,9 @@ func main() {
 	}
 }
 
+// DIFFICULTY EASY
+// ESTIMATED 1 hr
+// COMPLETED 0.5 hr
 func generateRandomString(param bool) string {
 	if !param {
 		pattern := "^[0-9+][a-zA-Z]+(?:-[0-9]+-[a-zA-Z]+)*$"
