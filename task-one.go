@@ -15,21 +15,21 @@ func main() {
 	fmt.Print("Enter string: ")
 	fmt.Scanf("%s", &param)
 
-	if !testValidity(param) {
+	if !TestValidity(param) {
 		fmt.Println("The entered string is not in the correct format")
 		return
 	}
 
-	fmt.Println("Average number ", averageNumber(param))
-	fmt.Println("Whole sentence ", wholeStory(param))
-	fmt.Println(storyStat(param))
+	fmt.Println("Average number ", AverageNumber(param))
+	fmt.Println("Whole sentence ", WholeStory(param))
+	fmt.Println(StoryStat(param))
 
 }
 
 // DIFFICULTY MEDIUM
 // ESTIMATED 2 hr
 // COMPLETED 2.5 hr
-func testValidity(str string) bool {
+func TestValidity(str string) bool {
 	if len(str) == 0 {
 		return false
 	}
@@ -40,7 +40,7 @@ func testValidity(str string) bool {
 // DIFFICULTY EASY
 // ESTIMATED 1 hr
 // COMPLETED 0.5 hr
-func averageNumber(str string) float32 {
+func AverageNumber(str string) float32 {
 	var count, total int
 	s := strings.Split(str, "-")
 	for _, val := range s {
@@ -60,23 +60,27 @@ func averageNumber(str string) float32 {
 // DIFFICULTY EASY
 // ESTIMATED 1 hr
 // COMPLETED 0.5 hr
-func wholeStory(str string) string {
+func WholeStory(str string) string {
 	// REPLACE NON ALPHABETICAL WITH SPACE
 	m := regexp.MustCompile("\\P{L}")
 	temp := m.ReplaceAllString(str, " ")
 
 	// REMOVE MULTIPLE SPACES, KEEP ONLY SINGLE SPACE BETWEEN TWO WORDS
-	m1 := regexp.MustCompile(" +")
-	res := m1.ReplaceAllString(temp, " ")
+	m1 := regexp.MustCompile("[\\s\\p{Zs}]{2,}")
+	temp1 := m1.ReplaceAllString(temp, " ")
+
+	// REMOVE LEADING AND TRAILING SPACES
+	m2 := regexp.MustCompile("^[\\s\\p{Zs}]+|[\\s\\p{Zs}]+$")
+	res := m2.ReplaceAllString(temp1, "")
 	return res
 }
 
 // DIFFICULTY EASY
 // ESTIMATED 1 hr
 // COMPLETED 0.5 hr
-func storyStat(str string) (shortest, longest, averagelength string, list []string) {
+func StoryStat(str string) (shortest, longest, averagelength string, list []string) {
 	// CONVERT STRING TO SENTENCE WITH SPACES
-	sentence := wholeStory(str)
+	sentence := WholeStory(str)
 
 	// CONVERT SENTENCE TO STRING ARRAY
 	s := strings.Fields(sentence)
