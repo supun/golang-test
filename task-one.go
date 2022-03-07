@@ -33,7 +33,7 @@ func testValidity(str string) bool {
 	if len(str) == 0 {
 		return false
 	}
-	match, _ := regexp.MatchString("^[0-9+]+-[a-zA-Z]+$", str)
+	match, _ := regexp.MatchString("^[0-9+]+-[a-zA-Z]+(?:-[0-9]+-[a-zA-Z]+)*$", str)
 	return match
 }
 
